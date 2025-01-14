@@ -239,6 +239,7 @@ You can find a tutorial for visual-inertial calibration and a detailed descripti
 # ORB_SLAM3をOpenCVだけで動かす
 
 ```
+wget https://raw.githubusercontent.com/hide4096/ORB_SLAM3/refs/heads/master/Dockerfile
 docker build -t orbslam3 .
 docker run --rm -it   --device /dev/video0:/dev/video0   --net host   -e DISPLAY=$DISPLAY   orbslam3 bash
 cd /ORB_SLAM3
