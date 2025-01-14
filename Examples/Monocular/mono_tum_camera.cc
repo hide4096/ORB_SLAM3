@@ -46,7 +46,7 @@ int main(int argc, char **argv)
     // Vector for tracking time statistics
     vector<float> vTimesTrack;
 
-    cv::Mat frame, grayFrame; // Add a variable for the grayscale frame
+    cv::Mat frame; // Add a variable for the grayscale frame
     double t_resize = 0.f;
     double t_track = 0.f;
 
@@ -60,15 +60,12 @@ int main(int argc, char **argv)
             break;
         }
 
-        // Convert to grayscale
-        cv::cvtColor(frame, grayFrame, cv::COLOR_BGR2GRAY);
-
         // Resize the image if necessary
         if(imageScale != 1.f)
         {
-            int width = grayFrame.cols * imageScale;
-            int height = grayFrame.rows * imageScale;
-            cv::resize(grayFrame, grayFrame, cv::Size(width, height));
+            int width = frame.cols * imageScale;
+            int height = frame.rows * imageScale;
+            cv::resize(frame, frame, cv::Size(width, height));
         }
 
         // Get current timestamp
@@ -81,7 +78,7 @@ int main(int argc, char **argv)
 #endif
 
         // Pass the grayscale image to the SLAM system
-        SLAM.TrackMonocular(grayFrame, tframe);
+        SLAM.TrackMonocular(frame, tframe);
 
 #ifdef COMPILEDWITHC11
         std::chrono::steady_clock::time_point t2 = std::chrono::steady_clock::now();
