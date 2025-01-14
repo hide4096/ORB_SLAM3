@@ -233,3 +233,14 @@ A flag in `include\Config.h` activates time measurements. It is necessary to unc
 
 # 9. Calibration
 You can find a tutorial for visual-inertial calibration and a detailed description of the contents of valid configuration files at  `Calibration_Tutorial.pdf`
+
+---
+
+# ORB_SLAM3をOpenCVだけで動かす
+
+```
+docker build -t orbslam3 .
+docker run --rm -it   --device /dev/video0:/dev/video0   --net host   -e DISPLAY=$DISPLAY   orbslam3 bash
+cd /ORB_SLAM3
+./Example/Monocular/mono_tum_camera <なにか> <なにか>
+```
