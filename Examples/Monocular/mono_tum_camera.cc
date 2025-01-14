@@ -89,8 +89,7 @@ int main(int argc, char **argv)
         double ttrack = std::chrono::duration_cast<std::chrono::duration<double>>(t2 - t1).count();
         vTimesTrack.push_back(ttrack);
 
-        // Display the grayscale frame
-        cv::imshow("ORB-SLAM3: Camera Input (Grayscale)", grayFrame);
+        cv::imshow("ORB-SLAM3: Camera Input", frame);
 
         // Wait for the next frame
         if(cv::waitKey(1000.0 / fps) == 27) // Press 'ESC' to exit
